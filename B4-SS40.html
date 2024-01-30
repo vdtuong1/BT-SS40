@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Giá Trị từ localStorage</title>
+</head>
+<body>
+
+<script>
+    if (localStorage.length > 0) {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+            console.log(`${key}: ${value}`);
+        }
+    } else {
+        console.log("Không có giá trị nào được lưu trong localStorage.");
+    }
+</script>
+
+</body>
+</html>

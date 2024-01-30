@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Ký Người Dùng</title>
+</head>
+<body>
+
+<form id="registrationForm">
+    <label for="username">Tên người dùng:</label>
+    <input type="text" id="username" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    
+    <label for="password">Mật khẩu:</label>
+    <input type="password" id="password" required>
+
+    <button type="button" onclick="registerUser()">Đăng ký</button>
+</form>
+
+<script>
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    function registerUser() {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const user = { username, email, password };
+
+        users.push(user);
+
+        localStorage.setItem('users', JSON.stringify(users));
+
+        document.getElementById('registrationForm').reset();
+
+        alert('Đăng ký thành công!');
+    }
+</script>
+
+</body>
+</html>

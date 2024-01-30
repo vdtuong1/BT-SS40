@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Nhập Người Dùng</title>
+</head>
+<body>
+
+<form id="loginForm">
+    <label for="loginUsername">Tên người dùng:</label>
+    <input type="text" id="loginUsername" required>
+    
+    <label for="loginPassword">Mật khẩu:</label>
+    <input type="password" id="loginPassword" required>
+
+    <button type="button" onclick="loginUser()">Đăng nhập</button>
+</form>
+
+<script>
+    const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+    function loginUser() {
+     
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+    
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        const loggedInUser = users.find(user => user.username === username && user.password === password);
+
+        if (loggedInUser) {
+            
+            sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+            
+    
+            document.getElementById('loginForm').reset();
+
+        
+            alert('Đăng nhập thành công!');
+        } else {
+    
+            alert('Thông tin đăng nhập không chính xác. Vui lòng kiểm tra lại.');
+        }
+    }
+
+    if (loggedInUser) {
+        alert(`Xin chào ${loggedInUser.username}! Bạn đã đăng nhập.`);
+    }
+</script>
+
+</body>
+</html>
+

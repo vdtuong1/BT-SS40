@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danh sách cầu thủ</title>
+<style>
+    #players { margin-top: 20px; }
+    .player { margin-bottom: 10px; }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        function displayPlayers() {
+            const playersContainer = document.getElementById('players');
+            playersContainer.innerHTML = '';
+            Object.keys(localStorage).forEach(function(key){
+                const playerName = localStorage.getItem(key);
+                const playerElement = document.createElement('div');
+                playerElement.className = 'player';
+                playerElement.textContent = playerName;
+                playersContainer.appendChild(playerElement);
+            });
+        }
+
+        displayPlayers();
+
+        document.getElementById('addPlayer').addEventListener('click', function() {
+            const playerNameInput = document.getElementById('playerName');
+            const playerName = playerNameInput.value.trim();
+            if(playerName) {
+                const playerId = Date.now().toString(); // 
+                localStorage.setItem(playerId, playerName);
+                displayPlayers();
+                playerNameInput.value = ''; 
+            } else {
+                alert('Vui lòng nhập tên cầu thủ.');
+            }
+        });
+    });
+</script>
+</head>
+<body>
+    <input type="text" id="playerName" placeholder="Nhập tên cầu thủ">
+    <button id="addPlayer">Thêm cầu thủ</button>
+    <div id="players"></div>
+</body>
+</html>

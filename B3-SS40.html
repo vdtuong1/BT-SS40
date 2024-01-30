@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý Cầu thủ</title>
+  <style>
+    input[type="text"] {
+      width: 200px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quản lý Cầu thủ</h1>
+  <input type="text" id="idInput" placeholder="Nhập ID cầu thủ">
+  <button id="xoaButton">Xóa cầu thủ</button>
+
+  <script>
+
+    let cau_thu_list = {
+      '1': 'Cầu thủ 1',
+      '2': 'Cầu thủ 2',
+      '3': 'Cầu thủ 3'
+    
+    };
+
+    document.getElementById('xoaButton').addEventListener('click', function() {
+      let idCauThu = document.getElementById('idInput').value;
+      if (cau_thu_list[idCauThu]) {
+        delete cau_thu_list[idCauThu];
+        alert(`Cầu thủ có ID ${idCauThu} đã được xóa.`);
+      } else {
+        alert(`Không tìm thấy cầu thủ với ID ${idCauThu}!`);
+      }
+      document.getElementById('idInput').value = '';
+    });
+  </script>
+</body>
+</html>

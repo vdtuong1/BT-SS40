@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Cá Nhân</title>
+</head>
+<body>
+
+<script>
+    
+    const name = prompt('Nhập họ tên:');
+    const age = prompt('Nhập tuổi:');
+    const email = prompt('Nhập email:');
+
+   
+    const personInfo = { name, age, email };
+
+    
+    localStorage.setItem('personInfo', JSON.stringify(personInfo));
+
+    
+    const storedPerson = JSON.parse(localStorage.getItem('personInfo'));
+    if (storedPerson) {
+        document.body.innerHTML = `
+            <h2>Thông Tin Cá Nhân</h2>
+            <p><strong>Họ Tên:</strong> ${storedPerson.name}</p>
+            <p><strong>Tuổi:</strong> ${storedPerson.age}</p>
+            <p><strong>Email:</strong> ${storedPerson.email}</p>
+        `;
+    }
+</script>
+
+</body>
+</html>
